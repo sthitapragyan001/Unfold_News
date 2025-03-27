@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/Unfold_News/static/css/main.d8777385.css",
+    "main.js": "/Unfold_News/static/js/main.17dc73a5.js",
+    "static/js/453.68693753.chunk.js": "/Unfold_News/static/js/453.68693753.chunk.js",
+    "static/media/loading.gif": "/Unfold_News/static/media/loading.42aaa181adb3af3bef08.gif",
+    "static/media/Newsicon.png": "/Unfold_News/static/media/Newsicon.54f1c08412004601a395.png",
+    "static/media/TitleIcon.png": "/Unfold_News/static/media/TitleIcon.65c972911a0bf2ce1ed5.png",
+    "index.html": "/Unfold_News/index.html",
+    "main.d8777385.css.map": "/Unfold_News/static/css/main.d8777385.css.map",
+    "main.17dc73a5.js.map": "/Unfold_News/static/js/main.17dc73a5.js.map",
+    "453.68693753.chunk.js.map": "/Unfold_News/static/js/453.68693753.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d8777385.css",
+    "static/js/main.17dc73a5.js"
+  ]
+}
