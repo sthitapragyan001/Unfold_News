@@ -12,7 +12,7 @@ const News = (props) => {
     const [page, setpage] = useState(1);
     const [totalresults, settotalresults] = useState(0);
     const [loading, setLoading] = useState(false);
-    const [hasError, sethasError] = useState({msg:false,code:false})
+    const [hasError, sethasError] = useState({ msg: false, code: false })
 
     const capitalizeFirstLetter = (string) => {
         return string.charAt(0).toUpperCase() + string.slice(1);
@@ -36,10 +36,10 @@ const News = (props) => {
 
         let newsdata = await fetch(url);
         let parseddata = await newsdata.json();
-        let narticle =parseddata.articles
-        if (narticle===undefined) {
-            narticle=[]
-            sethasError({msg:parseddata.message,code:parseddata.code})
+        let narticle = parseddata.articles
+        if (narticle === undefined) {
+            narticle = []
+            sethasError({ msg: parseddata.message, code: parseddata.code })
         }
         setarticles(narticle);
         settotalresults(parseddata.totalResults);
@@ -47,7 +47,7 @@ const News = (props) => {
     }
     useEffect(() => {
         updatenews();
-        
+
         // eslint-disable-next-line
     }, [props.country])
 
@@ -67,24 +67,24 @@ const News = (props) => {
         settotalresults(parseddata.totalResults)
     };
 
-    const Loadnews =()=>{
-        if (hasError.code){
+    const Loadnews = () => {
+        if (hasError.code) {
             return <>
-            <div className="text-center my-2" style={{ color: 'red', fontSize: 20, fontWeight: 'bold' }}>-- Something went Wrong, Unable to load the articles -- </div>
-            <div className="text-center my-2" style={{ color: 'red', fontSize: 20, fontWeight: 'bold' }}>Error {hasError.code} :  {hasError.msg} </div>
+                <div className="text-center my-2" style={{ color: 'red', fontSize: 20, fontWeight: 'bold' }}>-- Something went Wrong, Unable to load the articles -- </div>
+                <div className="text-center my-2" style={{ color: 'red', fontSize: 20, fontWeight: 'bold' }}>Error {hasError.code} :  {hasError.msg} </div>
             </>
         }
-        else{
+        else {
             return (
                 <>
-                <div className='row'>
-                    {newsarticles.map((article) => {
-                        return <div className='col-md-4 my-3' key={article.url}>
-                            <NewsCard title={article.title} desc={article.description} img={article.urlToImage} url={article.url} author={article.author} date={article.publishedAt} source={article.source.name} />
-                        </div>
-                    })}
-                </div>
-                {newsarticles.length === 0 && !(loading) && <div className="text-center" style={{ color: 'red', fontSize: 20, fontWeight: 'bold' }}>-- No articles match with the search --</div>}
+                    <div className='row'>
+                        {newsarticles.map((article) => {
+                            return <div className='col-md-4 my-3' key={article.url}>
+                                <NewsCard title={article.title} desc={article.description} img={article.urlToImage} url={article.url} author={article.author} date={article.publishedAt} source={article.source.name} />
+                            </div>
+                        })}
+                    </div>
+                    {newsarticles.length === 0 && !(loading) && <div className="text-center" style={{ color: 'red', fontSize: 20, fontWeight: 'bold' }}>-- No articles match with the search --</div>}
                 </>
             )
         }
@@ -92,24 +92,24 @@ const News = (props) => {
 
     return (
         <div className='container-fluid my-3'>
-                {loading && <Loader />}
-                <Header headline={headline} />
-                <Loadnews/>
-                <InfiniteScroll
-                    dataLength={newsarticles.length} //This is important field to render the next data
-                    next={fetchMoreData}
-                    hasMore={newsarticles.length < totalresults}
-                    loader={<Loader />}
-                    endMessage={
-                        <p style={{ textAlign: 'center' }}>
-                            <div className='container-fluid' style={{ background: '#94937a', borderRadius: 20 }}>
-                                {props.setProgress(100)}
-                                <b style={{ color: 'white' }}><img src={Newsicon} height={50} width={150} alt='' />-- You just read through all {totalresults} Articles! --</b>
-                            </div>
-                        </p>
-                    }
-                >
-                </InfiniteScroll>
+            {loading && <Loader />}
+            <Header headline={headline} />
+            <Loadnews />
+            <InfiniteScroll
+                dataLength={newsarticles.length} //This is important field to render the next data
+                next={fetchMoreData}
+                hasMore={newsarticles.length < totalresults}
+                loader={<Loader />}
+                endMessage={
+                    <p style={{ textAlign: 'center' }}>
+                        <div className='container-fluid' style={{ background: '#94937a', borderRadius: 20 }}>
+                            {props.setProgress(100)}
+                            <b style={{ color: 'white' }}><img src={Newsicon} height={50} width={150} alt='' />-- You just read through all {totalresults} Articles! --</b>
+                        </div>
+                    </p>
+                }
+            >
+            </InfiniteScroll>
         </div>
 
     )

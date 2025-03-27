@@ -1,13 +1,14 @@
 import React from 'react'
 import TitleIcon from './TitleIcon.png'
-export default function NewsCard(props) {
+export default function NewsCard(props)
+
+{   
     let imgsrc = props.img ? props.img : TitleIcon
     let showdate = new Date(props.date).toUTCString()
     return (
         <div className="card" style={{ borderRadius: 50 }}>
             <span className="position-absolute top-10 start-50 translate-middle badge rounded-pill bg-success" style={{fontSize:15}}>
                 {props.source}
-                <span className="visually-hidden">unread messages</span>
             </span>
             <img src={imgsrc} alt='' className="card-img-top" style={{ borderRadius: 50 }} />
             <div className="card-body">

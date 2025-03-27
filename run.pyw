@@ -1,4 +1,4 @@
-#!/usr/bin/env python3s
+
 import subprocess
 command = 'npm run start'
 

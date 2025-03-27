@@ -23,12 +23,7 @@ export default function Navbar(props) {
         props.setStartdate(tempstartdate)
         props.setEnddate(tempenddate)
     }
-
-    const resetdate = () => {
-        props.setStartdate('')
-        props.setEnddate('')
-    }
-
+    
     const Radiobut = () => {
 
         return (
@@ -44,7 +39,7 @@ export default function Navbar(props) {
     }
     return (
         <nav className="navbar fixed-top navbar-expand-lg navbar-light bg-light" style={{ zIndex: 1 }}>
-            <div className="container-fluid" style={{ background: '#94937a', borderRadius: 0 }}>
+            <div className="container-fluid" style={{ background: '#94937a', borderRadius: 10}}>
                 <Link className="navbar-brand" to="/"><img src={Newsicon} alt="" width="130" height="40" style={{ borderRadius: '13px' }} /></Link>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
@@ -78,25 +73,21 @@ export default function Navbar(props) {
                     </ul>
                     <div className="btn-group dropdown">
                         <button type="button" className="btn dropdown-toggle mx-1" data-bs-auto-close="outside" data-bs-toggle="dropdown" aria-expanded="false" style={{ background: '#94937a', color: 'white', fontSize: 20 }}>Filter Date</button>
-                        <ul className="dropdown-menu" aria-labelledby="navbarDropdown" style={{ borderRadius: 30 }}>
-                            <div className='text-center' style={{ fontWeight: 'bold' }}>- From -</div>
-                            <DatePicker showMonthDropdown dateFormat="dd/MM/yyyy" selected={tempstartdate} onChange={(date) => settempStartdate(date.toISOString())} />
-                            <div className='text-center' style={{ fontWeight: 'bold' }}>- To -</div>
-                            <DatePicker showMonthDropdown dateFormat="dd/MM/yyyy" selected={tempenddate} onChange={(date) => settempEnddate(date.toISOString())} />
-                            <div className='row'>
-                                <div className='col-md-5 mx-3 my-2'><button type="button" className="btn btn-outline-success text-center" style={{ borderRadius: 20 }} onClick={filterhandle}>Filter</button></div>
-                                <div className='col-md-5 my-2'><button type="button" className="btn btn-outline-danger text-center" style={{ borderRadius: 20 }} onClick={resetdate}>Reset</button></div>
+                        <ul className="dropdown-menu" aria-labelledby="navbarDropdown" style={{borderRadius:30}}>
+                            <div className='text-center' style={{fontWeight:'bold'}}>- From -</div>
+                                <DatePicker showMonthDropdown dateFormat="dd/MM/yyyy" selected={tempstartdate} onChange={(date) => settempStartdate(date.toISOString())}/>
+                                <div className='text-center' style={{fontWeight:'bold'}}>- To -</div>
+                                    <DatePicker showMonthDropdown dateFormat="dd/MM/yyyy" selected={tempenddate} onChange={(date) => settempEnddate(date.toISOString())} />
+                                    <div className='text-center'><button type="button" className="btn btn-outline-danger text-center" style={{borderRadius:20}} onClick={filterhandle}>Filter</button></div>
+                                </ul>
                             </div>
 
-                        </ul>
+                            <form className="d-flex">
+                                <input className="form-control me-2" type="search" onChange={(e) => setquery(e.target.value)} value={query} placeholder="Search News" aria-label="Search" style={{ borderRadius: '10px' }} />
+                                <Link to={"/search/" + query}><button className="btn btn-success" style={{ borderRadius: '10px' }} onClick={handleclick}>Search</button></Link>
+                            </form>
                     </div>
-
-                    <form className="d-flex">
-                        <input className="form-control me-2" type="search" onChange={(e) => setquery(e.target.value)} value={query} placeholder="Search News" aria-label="Search" style={{ borderRadius: '10px' }} />
-                        <Link to={"/search/" + query}><button className="btn btn-success" style={{ borderRadius: '10px' }} onClick={handleclick}>Search</button></Link>
-                    </form>
                 </div>
-            </div>
         </nav>
     )
 }
