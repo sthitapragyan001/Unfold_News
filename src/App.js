@@ -27,6 +27,7 @@ function App() {
       />
         <Routes>
           <Route exact path="/" element={<News apikey={apiKey} setProgress={setProgress} key="general" country={country} category="general" />} />
+          <Route exact path="/Unfold_News" element={<News apikey={apiKey} setProgress={setProgress} key="general" country={country} category="general" />} />
           <Route exact path="/business" element={<News apikey={apiKey} setProgress={setProgress} key="business" country={country} category="business" />} />
           <Route exact path="/entertainment" element={<News apikey={apiKey} setProgress={setProgress} key="entertainment" country={country} category="entertainment" />} />
           <Route exact path="/health" element={<News apikey={apiKey} setProgress={setProgress} key="health" country={country} category="health" />} />
